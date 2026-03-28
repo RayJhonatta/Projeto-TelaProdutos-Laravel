@@ -1,0 +1,8 @@
+---
+alwaysApply: true
+---
+
+public function destroy(string $id)
+    {
+        //
+    }
