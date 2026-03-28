@@ -35,7 +35,7 @@ class PersonController extends Controller
         return response->json($person);
     }
 
-    /**
+    /*fe
      * Display the specified resource.
      */
     public function show(string $id)
