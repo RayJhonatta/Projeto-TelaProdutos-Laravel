@@ -1,12 +1,14 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PersonController;
 
-Route::get('/listar', [PersonController::class, 'index']);
+Route::get('/person', [App\Http\Controllers\PersonController::class, 'index']);
 
-Route::post('/nova', [PersonController::class, 'store']);
+Route::post('/person', [App\Http\Controllers\PersonController::class, 'store']);
 
-Route::put('/editar/{id}', [PersonController::class, 'update']);
+Route::get('/person/{id}', [App\Http\Controllers\PersonController::class, 'show']);
 
-Route::delete('/deletar/{id}', [PersonController::class, 'destroy']);
+Route::put('/person/{id}', [App\Http\Controllers\PersonController::class, 'update']);
+
+Route::delete('/person/{id}', [App\Http\Controllers\PersonController::class, 'destroy']);

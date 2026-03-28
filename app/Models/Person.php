@@ -8,5 +8,9 @@ class Person extends Model
 {
     protected $table = 'person';
 
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
 }
