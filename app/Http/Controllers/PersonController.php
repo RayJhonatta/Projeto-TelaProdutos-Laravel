@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Person;
+use Illuminate\Support\Facades\Hash;
 
 class PersonController extends Controller
 {
@@ -22,18 +23,14 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        $person = Person::where('email', $request->email)->first();
+        $person = Person::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
 
-        if (!$person) {
-            return response()->json(['error' => 'Informações inválidas'], 401);
-        }
-
-        if(!Hask::check($request->password, $person->password)) {
-            return response->json(['error' => 'Senha incorreta'], 401);
-        }
-        
-        return response->json($person);
-    }
+        return response()->json($person);
+    } 
 
     /*fe
      * Display the specified resource.
