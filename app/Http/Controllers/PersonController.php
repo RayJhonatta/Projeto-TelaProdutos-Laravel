@@ -13,9 +13,20 @@ class PersonController extends Controller
      */
     public function index(Request $request)
     {
-       $person = Person::all();
+        $data = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
 
-       return $person;
+        $person = Person::where('email', $data['email'])->first();
+
+        if (!$person || !Hash::check($data['password'], $person->password)) {
+            return response()->json([
+                'error' => 'Email ou senha inválido'
+            ], 401);
+        }
+
+       return response()->json($person);
     }
 
     /**

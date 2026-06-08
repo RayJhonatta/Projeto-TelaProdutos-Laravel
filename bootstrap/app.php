@@ -12,7 +12,15 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        
+        // 1. Garante que as rotas da API não exijam o token CSRF do ambiente Web
+        $middleware->validateCsrfTokens(except: [
+            'api/*',
+        ]);
+
+        // 2. Adiciona os cabeçalhos de CORS para permitir que a Vercel acesse o Railway
+        $middleware->append(\Illuminate\Http\Middleware\HandleCors::class);
+        
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

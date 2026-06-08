@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/person', [App\Http\Controllers\PersonController::class, 'index']);
+Route::post('/login', [App\Http\Controllers\PersonController::class, 'index']);
 
 Route::post('/person', [App\Http\Controllers\PersonController::class, 'store']);
 
