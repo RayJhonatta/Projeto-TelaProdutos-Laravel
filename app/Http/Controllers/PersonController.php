@@ -11,7 +11,7 @@ class PersonController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function login(Request $request)
     {
         $data = $request->validate([
             'email' => 'required|email',
