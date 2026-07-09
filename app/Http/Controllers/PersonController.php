@@ -8,8 +8,18 @@ use Illuminate\Support\Facades\Hash;
 
 class PersonController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
+     * Puxa todos os usuários do sistema. 
+     */
+    public function index()
+    {
+        $people = Person::all(); 
+        return response()->json($people);
+    }
+    
+    /**
+     * Verificar se o usuário existe no sistema ou não. 
      */
     public function login(Request $request)
     {
@@ -30,7 +40,7 @@ class PersonController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Criar o usuário. 
      */
     public function store(Request $request)
     {
@@ -44,7 +54,7 @@ class PersonController extends Controller
     } 
 
     /*fe
-     * Display the specified resource.
+     * Puxa o usuário pelo id. 
      */
     public function show(string $id)
     {
@@ -52,7 +62,7 @@ class PersonController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Atualizar os dados dos usuário. 
      */
     public function update(Request $request, string $id)
     {
@@ -60,7 +70,7 @@ class PersonController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Deletar os dados do usuário. 
      */
     public function destroy(string $id)
     {

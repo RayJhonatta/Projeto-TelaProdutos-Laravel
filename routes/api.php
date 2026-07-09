@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [App\Http\Controllers\PersonController::class, 'login']);
 
+Route::get('/person', [App\Http\Controllers\PersonController::class, 'index']);
+
 Route::post('/person', [App\Http\Controllers\PersonController::class, 'store']);
 
 Route::get('/person/{id}', [App\Http\Controllers\PersonController::class, 'show']);
