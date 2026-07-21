@@ -66,7 +66,31 @@ class PersonController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $person = Person::find($id);
+
+        if (!$person) {
+            return response()->json([
+                'message' => 'Usuário não encontrado'
+            ], 404);
+        }
+
+        $data = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:person,email,' . $id,
+            'password' => 'nullable|string|min:6'
+        ]);
+
+        $person->name = $data['name'];
+        $person->email = $data['email'];
+
+        if ($request->filled('password')) {
+            $person->password = Hash::make($request->password);
+        }
+
+        $person->save();
+
+        return response()->json($person, 200);
+
     }
 
     /**
