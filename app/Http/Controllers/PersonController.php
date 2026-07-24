@@ -98,6 +98,16 @@ class PersonController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $person = Person::find($id);
+
+        if (!$person) {
+            return response()->json([
+                'message' => 'Usuário não encontrado'
+            ], 404);
+        }   
+
+        $person->delete();
+
+        return response()->json($person, 200);
     }
 }
