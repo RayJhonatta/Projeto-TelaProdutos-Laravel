@@ -32,6 +32,7 @@ RUN composer install --no-dev --optimize-autoloader
 # Dá permissão para as pastas de cache do Laravel
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-CMD php artisan migrate --force && apache2-foreground
+# Roda as migrações, otimiza as rotas/configs na memória e inicia o Apache
+CMD php artisan migrate --force && php artisan optimize && apache2-foreground
 
 EXPOSE 80
